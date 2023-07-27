@@ -1,0 +1,62 @@
+Docker helps you setup a development environment on your machine quickly. 
+It only takes a couple of minutes to go through the entire process.
+
+But let's assume you were assigned on a project which requires at least 10 
+different services in a running state to run your project. For example, let's say 
+your project requires Java 8, Node 14, MySQL, MongoDB, Ruby on rails, and others.
+
+In such case, you have to pull all those images individually from Docker and 
+start all of them in their containers. At some point, one process may 
+depend on another to run. So, you have to order them.
+
+It would be good if it's a one time process. But, not just once – every day, 
+every time you start working on your project – you have to start all these 
+services.
+
+That's a tedious process right?
+
+To overcome this, Docker introduced a concept called Multi Containers 
+(Docker Compose). 
+
+What is docker-compose?
+
+    Docker Compose is a tool you can use to define and share multi-container 
+    applications. This means you can run a project with multiple containers 
+    using a single source.
+
+    For example, assume you're building a project with NodeJS and MongoDB 
+    together. You can create a single image that starts both containers as 
+    a service – you don't need to start each separately.
+
+    To achieve this we need to define a docker-compose.yml.
+
+    docker-compose.yml file
+    The compose file is a YML file defining services, networks, and volumes 
+    for a Docker container. There are several versions of the compose file 
+    format available – 1, 2, 2.x, and 3.x.
+
+(Refer to docker-compose.yml)
+
+In the provided docker-compose.yml file, the order in which the containers 
+start depends on their dependencies and configuration. Docker Compose uses 
+the defined services dependencies to determine the order of container 
+startup. In this case, there are two services, app and mongo, and they do 
+not have any explicit dependencies specified. Therefore, Docker Compose will 
+start both containers concurrently.
+
+The containers within a Docker Compose configuration are considered 
+independent of each other by default. As a result, both the app and mongo 
+containers will start at the same time when you run docker-compose up.
+
+However, it's essential to note that this simultaneous start does not 
+guarantee that both services will be immediately available for communication. For example, the app service may depend on the mongo service (e.g., if the Node.js application requires a MongoDB database for data storage). If the application tries to connect to the MongoDB database before it is fully ready and available, it may encounter errors.
+
+To ensure that dependent services are fully ready before starting the 
+dependent service, you can use container health checks and various 
+container orchestration tools like Docker Compose's depends_on directive, 
+or even more advanced tools like Kubernetes with readiness and liveness 
+probes.
+
+The depends_on directive allows you to specify explicit dependencies between 
+services, making Docker Compose start the dependent service only after 
+the service(s) it depends on are up and healthy.

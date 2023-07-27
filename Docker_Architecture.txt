@@ -1,0 +1,151 @@
+The Docker platform provides a set of tools and APIs (Application Programming Interfaces) that enable you to:
+
+	Create and manage Docker images.
+
+	Run and manage Docker containers
+
+	Monitor and log the behavior and performance of your containers
+
+	Manage the networking and security of your containers
+	
+Docker Architecture
+	Docker uses a client-server architecture. At its core, the Docker architecture consists of three main 
+	components:
+
+		Docker daemon
+		Docker client
+		Docker registry.
+	
+	The Docker daemon and the Docker client provide the core functionality. The Docker registry is an additional 
+	component. These three components work together to build, run, and manage Docker containers.
+
+	Docker Daemon
+		The Docker daemon (known as dockerd) is the actual process that runs the containers. It is a background 
+		process that runs on the host operating system and manages the lifecycle of Docker containers. It is 
+		responsible for building and running containers, as well as storing and distributing Docker images.
+
+		The Docker daemon has a REST API (called the Docker Engine API), which is a way for other programs to 
+		talk to it and give it commands. Docker client is an example of such a program. Whenever we use a 
+		"docker" command, the client uses the API to tell Docker daemon what it should do. And other programs 
+		can interact with the daemon as well, even in an automated way, without requiring manual user input.
+
+	Docker Client
+		The Docker client (docker) is the primary way many users interact with Docker. It is a command-line 
+		interface (CLI) utility that allows users to interact with the Docker daemon. Simply put, users can 
+		use plain English to write Docker commands (tell the Docker client what they want to do). And then the 
+		Docker client tells the Docker daemon what action it should take.
+
+		The Docker client communicates with the Docker daemon via the REST API. A REST API is just a way for 
+		different pieces of software to talk to each other over the Internet. In the case of Docker, the client 
+		uses the REST API to send requests to the daemon to do things like build, run, and manage containers.
+
+		Note that the Docker client can run on the same host as the Docker daemon, or it can run on a separate 
+		machine and communicate with the Docker daemon over the network.
+
+	Docker Registry
+		A Docker registry is a central storage location for distributing Docker images 
+		(uploading and downloading). The most common registry is Docker Hub, where developers can publish their 
+		images for others to use. Private registries can also be set up; however, Docker is configured to 
+		look for images on Docker Hub by default.
+
+		When you use docker pull or docker run commands, Docker automatically retrieves the necessary images 
+		from the registry you have configured. On the other hand, when you use docker push, the image you 
+		specify gets uploaded to your configured registry.
+
+The Technology Behind Docker
+	Docker is built on top of several features of the Linux kernel. The kernel is the part of the operating 
+	system that communicates directly with the computer's hardware and manages the resources 
+	(like memory, CPU, and so on) of the system. Let's take a closer look at two of these features: 
+		
+		namespaces and control groups.
+
+	Namespaces: Basically, when you use Docker, it creates a little "container" for your app that's isolated 
+	from the rest of the system. This means that the app can't see or interact with other apps or processes
+	running on the same machine. This is useful because it lets you run multiple apps on the same machine 
+	without allowing them to negatively interfere with each other.
+	
+	Control groups (cgroups): cgroups set limits on how much of the computer's resources 
+	(like CPU, memory, and so on) each container can use. This helps make sure that one container doesn't use 
+	up all the resources and leave nothing for the other apps.
+
+DOCKER REGISTRY
+	A Docker registry is a repository that stores Docker images. It is a central server where Docker images 
+	can be pushed, pulled, and managed. Docker images are essentially snapshots of applications and their 
+	dependencies, packaged in a standardized format, allowing for easy distribution and deployment.
+
+	There are two primary types of Docker registries:
+
+	Public Docker Registry:
+		Docker Hub is the most popular public Docker registry. It is a cloud-based registry provided by Docker 
+		Inc., where developers and organizations can store and share their Docker images publicly. 
+		Docker Hub contains a vast collection of pre-built images for various software applications, making it 
+		a valuable resource for the Docker community.
+
+	Private Docker Registry:
+		In addition to public registries like Docker Hub, organizations often set up their private Docker 
+		registries to store their proprietary or sensitive Docker images securely. A private registry allows 
+		companies to maintain full control over their container images and restrict access to authorized 
+		users only.
+
+	Docker clients interact with Docker registries using the Docker CLI. Here are some essential commands for 
+	working with Docker registries:
+
+		docker pull <image_name>:<tag>: Pulls an image from a registry to the local machine.
+		docker push <image_name>:<tag>: Pushes an image from the local machine to a registry.
+		docker login: Authenticates the user with the Docker registry (required for private registries).
+		docker logout: Logs out the user from the Docker registry.
+
+		docker tag <source_image>:<source_tag> <destination_image>:<destination_tag>: 		
+		Tags an existing image with a new name and optionally a new tag.
+
+	When you use the docker run command, if the specified image is not available locally, Docker will 
+	automatically attempt to pull the image from the default registry (Docker Hub) or the registry 
+	specified in the image name.
+
+	Additionally, Docker provides options for organizations to set up their own on-premises private registry 
+	using Docker Registry (open-source) or Docker Trusted Registry (commercial), providing them with complete 
+	control over image management and distribution within their infrastructure.
+
+	Using Docker registries simplifies the distribution of container images and allows developers and IT 
+	teams to easily share, version, and manage the deployment of applications using containerization technology.
+
+	There are several container registries similar to Docker Hub that provide similar functionalities for 
+	storing, sharing, and distributing container images. These services offer a platform for developers and 
+	organizations to manage their Docker images and collaborate with others. Some of the popular alternatives 
+	to Docker Hub include:
+
+		Amazon Elastic Container Registry (ECR):
+			Amazon ECR is a fully managed container registry provided by Amazon Web Services (AWS). It 
+			integrates seamlessly with other AWS services, making it an excellent choice for organizations 
+			already using AWS for their infrastructure. ECR provides secure, scalable, and reliable storage 
+			for Docker images.
+
+		Google Container Registry (GCR):
+			Google Container Registry is a managed container registry service offered by Google Cloud Platform 
+			(GCP). 
+
+		Azure Container Registry (ACR):
+			Azure Container Registry is a service provided by Microsoft Azure that allows users to store and 
+			manage container images in the Azure cloud. 
+
+		Quay.io:
+			Quay.io is a container registry platform by Red Hat. It offers public and private repositories for 
+			Docker images and supports additional container formats like AppContainer (ACI) and OCI. 
+			Quay.io provides features like vulnerability scanning and automated builds.
+
+		GitLab Container Registry:
+			GitLab offers a container registry as part of its integrated DevOps platform. Developers can store 
+			Docker images directly within their GitLab repositories, making it a convenient option for 
+			organizations using GitLab for their version control and CI/CD pipelines.
+
+		Harbor:
+			Harbor is an open-source container registry that can be self-hosted. It provides features 
+			like vulnerability scanning, content trust, replication, and role-based access control. 
+			Harbor is a popular choice for organizations that prefer to host their container registry internally.
+			
+		GitHub container registry: ...
+
+		These services provide similar functionalities to Docker Hub, but they may have different pricing 
+		models, integration options, and additional features. The choice of a container registry depends on 
+		factors such as the existing cloud provider, the level of integration required, security needs, and 
+		whether public or private image storage is required.

@@ -1,0 +1,209 @@
+What is Docker?
+	Docker is an open source platform that enables developers to build, deploy, run, update and manage containers.
+	
+	Containers simplify development and delivery of distributed applications. They have become increasingly 
+	popular as organizations shift to cloud-native development and hybrid multicloud environments. 
+	It’s possible for developers to create containers without Docker, by working directly with capabilities 
+	built into Linux and other operating systems. But Docker makes containerization faster, easier and safer. 
+
+Docker Alternatives:
+	dockerD, hyper-V, podMan,  runC, LXC
+
+What Is Containerization?
+	Containerization in cloud computing is the process of building software applications for containers. 
+	The final product of packaging and designing a container app is a container image.
+
+	These are the essential elements of a typical container image:
+
+		The application code
+		Configuration files
+		Software dependencies
+		Libraries
+		Environment variables
+		
+	The image includes everything needed to run containerized applications irrespective of the infrastructure 
+	that hosts them.
+	
+How Do Containers Work?
+	The standardized container management process has four stages for apps and the services they contain:
+
+		Creation
+		Deployment
+		Scaling/Expansion
+		Destruction
+
+	Containerization ensures that none of these stages depend on an OS kernel. Therefore, containers do not 
+	carry any Guest OS with them the way a VM must.
+
+	Containerized applications are tied to all their dependencies as a single deployable unit. 
+	Leveraging the features and capabilities of the host OS, containers enable these software apps to work 
+	in all environments.
+
+ 
+What is a Docker Image?
+	A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, 
+	tools, and other files needed for an application to run.
+
+	Due to their read-only quality, these images are sometimes referred to as snapshots. They represent an 
+	application and its virtual environment at a specific point in time. 
+
+	A container is, ultimately, just a running image. Once you create a container, it adds a writable layer 
+	on top of the immutable image, meaning you can now modify it.
+
+	The image-base on which you create a container exists separately and cannot be altered. When you run a 
+	containerized environment, you essentially create a read-write copy of that filesystem (docker image) 
+	inside the container. This adds a container layer which allows modifications of the entire copy of the 
+	image.
+	
+	The immutability of Docker images offers several benefits:
+
+	Since the image contents cannot change, you can be confident that any container created from that image will 
+	behave the same way regardless of the environment it is deployed in.
+
+	Versioning: Docker images can be versioned, allowing you to maintain multiple versions of an application. 
+	This makes it easy to roll back to a previous version if necessary.
+
+	Security: Immutable images reduce the risk of tampering. Once an image is built, it can be digitally signed 
+	and verified, ensuring the integrity of the contents. This is especially important for ensuring the security 
+	of containerized applications.
+
+	Caching and Sharing: Docker images can be cached and shared efficiently. If an image already exists locally, 
+	Docker will use it instead of re-downloading or rebuilding the entire image.
+
+	Base Image/ Parent Image
+		A base image typically contains a minimal operating system environment (such as a Linux distribution) 
+		with a specific runtime (e.g., Python, Node.js) or framework (e.g., Nginx, Apache). It may also include 
+		essential system libraries and tools needed to run applications using that runtime or framework. 
+		( refer to Dockerfile )
+
+	Docker Manifest
+		In Docker, a manifest is a JSON file that describes a multi-platform Docker image. It provides metadata and 
+		configuration details about different versions of an image optimized for different CPU architectures and 
+		operating systems. A Docker image manifest allows Docker to intelligently choose the appropriate image version 
+		when pulling an image based on the platform of the host machine.
+
+		The Docker image manifest is an essential feature for multi-platform support and helps with the adoption of 
+		containerization in heterogeneous environments, where different systems and architectures coexist.
+
+What is a Docker Container?
+	A Docker container is a virtualized run-time environment where users can isolate applications from the 
+	underlying system. These containers are compact, portable units in which you can start up an application 
+	quickly and easily.
+
+	A valuable feature is the standardization of the computing environment running inside the container. 
+	Not only does it ensure your application is working in identical circumstances, but it also simplifies 
+	sharing with other teammates.
+
+	As containers are autonomous, they provide strong isolation, ensuring they do not interrupt other 
+	running containers, as well as the server that supports them. 
+
+	Unlike virtual machines (VMs) where virtualization happens at the hardware level, containers virtualize at 
+	the OS layer. They can utilize one machine, share its kernel, and virtualize the operating system to run 
+	isolated processes. This makes containers extremely lightweight, allowing you to retain valuable resources.
+	
+From Dockerfile to Image to Container
+	It all starts with a script of instructions that define how to build a specific Docker image. 
+	This script is called a Dockerfile. The file automatically executes the outlined commands and creates a 
+	Docker image.
+
+	The command for creating an image from a Dockerfile is docker build.
+
+	The image is then used as a template (or base), which a developer can copy and use it to run an application. 
+	The application needs an isolated environment in which to run – a container.
+
+	This environment is not just a virtual “space”. It entirely relies on the image that created it. The source 
+	code, files, dependencies, and binary libraries, which are all found in the Docker image, are the ones that 
+	make up a container.
+
+	To create a container layer from an image, use the command docker create.
+
+	Finally, after you have launched a container from an existing image, you start its service and run the 
+	application.
+
+Docker CE vs EE
+	Docker CE is a free and open source containerization platform. It is a rebranded version of the Docker open 
+	source solution that has been freely available since the launch of Docker in 2013.
+
+	Docker EE, on the other hand, is a premium version of CE. Docker EE is an integrated, fully supported, 
+	and certified container platform that runs on Red Hat Enterprise Linux (RHEL), SUSE Linux Enterprise Server 
+	(SLES), Oracle Linux, Ubuntu, Windows Server 2016, as well as Azure and AWS.
+
+	First things first, it’s important to note that Docker CE is not a ‘watered down’ version of Docker EE. 
+	Both CE and EE have the same core features and functions:
+
+	Both editions are updated quarterly, and both are available on a wide range of popular operating systems and 
+	cloud infrastructures, giving enterprises the freedom to run containerized applications on their favorite 
+	infrastructure—without lock-in.
+
+	While both editions offer the same core features, Docker EE comes with additional features that can help 
+	enterprises launch, manage, and secure their containers more efficiently.
+
+	Here’s a summary of what companies can do when using Docker Enterprise Edition:
+		Gain access to certified Docker images and plugins
+		
+		View your container clusters in a single pane view
+		
+		Access controls for cluster and image management
+		
+		Receive official same-day support from Docker
+		
+		Run vulnerability scans on your Docker images
+		
+		Run Docker EE engine with FIPS 140-2 certification
+		
+		Advanced image and container management, LDAP/AD user integration, and role-based access 
+		control (formerly available only through Docker Datacenter, which is now part of the Docker EE plan)
+		
+		Continuous vulnerability monitoring and Docker Security Scanning 
+		(formerly available only through Docker Datacenter, which is now part of the Docker EE plan)
+	
+Advantages of Docker:
+
+	Portability: Docker allows applications and their dependencies to be packaged in a standardized container 
+	format, making them portable across different environments. Developers can create containers on their local 
+	machines and run them seamlessly on any platform that supports Docker.
+
+	Isolation: Docker containers provide process-level isolation, ensuring that applications and services 
+	run in their own isolated environments. This isolation prevents conflicts between applications and improves 
+	security by reducing the attack surface.
+
+	Efficiency: Containers are lightweight, sharing the host machine's kernel, which results in reduced overhead 
+	compared to traditional virtual machines. Containers can start up quickly and use fewer resources, 
+	leading to better overall system efficiency.
+
+	Scalability: Docker makes it easy to scale applications by running multiple containers of the same image. 
+	This horizontal scaling approach allows for efficient utilization of resources and ensures that the 
+	application can handle increased traffic and workloads.
+
+	Versioning and Rollbacks: Docker images can be versioned, allowing developers to keep track of changes over 
+	time. If an issue arises with a newer version, rolling back to a previous version is straightforward.
+
+	Continuous Integration and Deployment (CI/CD): Docker facilitates CI/CD pipelines by ensuring consistency 
+	across development, testing, and production environments. The same Docker image used in development can be 
+	promoted through different stages, streamlining the deployment process.
+
+Disadvantages of Docker:
+
+	Learning Curve: Docker has a learning curve, especially for those new to containerization and container 
+	orchestration concepts. Understanding how to create effective Docker images and managing container networks 
+	may require some effort.
+
+	Resource Overhead: While Docker containers are more lightweight than traditional VMs, there is still some 
+	overhead involved. Running many containers simultaneously on a single host might consume significant 
+	resources.
+
+	Security Concerns: Docker security largely depends on proper container configuration and adherence to best 
+	practices. Misconfigurations or improper isolation can lead to security vulnerabilities.
+
+	Persistence and State Management: Containers are generally designed to be stateless, which means managing 
+	data persistence can be challenging. Special considerations are required for databases or applications 
+	that need persistent storage.
+
+	Compatibility Issues: Some applications may require changes or adjustments to run effectively in Docker 
+	containers, especially legacy or monolithic applications.
+
+	Networking Complexity: Managing container networking, especially in multi-host and complex setups, can 
+	become challenging, especially when working with container orchestration tools like Kubernetes.
+
+	Lack of GUI Support: Docker primarily focuses on command-line interface (CLI) usage, and graphical user 
+	interface (GUI) support for certain tasks might be limited.

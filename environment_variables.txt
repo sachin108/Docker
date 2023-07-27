@@ -1,0 +1,75 @@
+Environment variables are dynamic values that can be accessed and modified 
+by processes running in an operating system. 
+They are used to store configuration settings, system paths, and other information 
+that applications  need to function correctly. 
+
+In the context of Docker, environment variables play a crucial role in configuring 
+containers and defining runtime parameters for applications within the container. 
+
+Docker provides various ways to set and use environment variables:
+
+    Setting Environment Variables in Dockerfile:
+        In a Dockerfile, you can use the ENV instruction to set environment 
+        variables. This makes them available to the application running inside 
+        the container.
+
+        Example:
+
+        Dockerfile
+            # Set environment variable
+            ENV MY_VARIABLE=my_value
+
+            # Use the environment variable in the command
+            CMD echo "Value of MY_VARIABLE is $MY_VARIABLE"
+
+        Setting Environment Variables during Container Run:
+            When running a Docker container, you can use the -e or --env 
+            flag to set environment variables.
+
+            Example:
+
+                docker run -e MY_VARIABLE=my_value my_image
+    
+        Using Environment Variables in Compose Files:
+            In Docker Compose files, you can define environment variables for 
+            services using the environment or env_file keys.
+
+    Example (using environment):
+
+        version: "3"
+        services:
+        my_service:
+            image: my_image
+            environment:
+            MY_VARIABLE: my_value
+
+    Example (using env_file):
+
+    version: "3"
+    services:
+    my_service:
+        image: my_image
+        env_file:
+        - ./my_env_file.env
+
+    Default Values and Shell Expansions:
+        Docker allows you to specify default values for environment 
+        variables and perform shell expansions within the variable 
+        definition.
+
+        Example:
+
+        Dockerfile
+
+        # Set a default value for the environment variable
+        ENV MY_VARIABLE=my_default_value
+
+        # Use shell expansion to set the environment variable
+        ENV MY_PATH=/my/app
+        ENV PATH=$PATH:$MY_PATH
+
+    Environment variables are essential for configuring containerized 
+    applications, specifying credentials, providing runtime settings, 
+    and making containers adaptable to different environments. 
+    They are widely used in containerized environments to promote 
+    portability and ease of configuration management.

@@ -1,0 +1,99 @@
+What are containers?
+	Containers are a form of operating system virtualization. A single container might be used to run anything 
+	from a small microservice or software process to a larger application. Inside a container are all the 
+	necessary executables, binary code, libraries, and configuration files such as specific versions of 
+	programming language runtimes. 
+		
+	To do this, containers take advantage of a form of operating system (OS) virtualization in which features 
+	of the OS kernel (e.g. Linux namespaces and cgroups, Windows silos and job objects) can be leveraged to 
+	isolate processes and control the amount of CPU, memory and disk that those processes can access.
+
+	Containers are small, fast and portable because unlike a virtual machine, containers do not need to 
+	include a guest OS in every instance and can instead simply leverage the features and resources of the 
+	host OS.
+	
+	Containers make it easy to share CPU, memory, storage, and network resources at the operating systems 
+	level.
+	
+	In larger application deployments, multiple containers may be deployed as one or more container clusters. 
+	Such clusters might be managed by a container orchestrator such as Kubernetes.
+
+Containers VS virtual machines (VMs)
+	In traditional virtualization—whether it be on-premises or in the cloud—a hypervisor is leveraged to 
+	virtualize physical hardware. Each VM then contains a guest OS and a virtual copy of the hardware that 
+	the OS requires to run, along with an application and its associated libraries and dependencies.
+
+	Instead of virtualizing the underlying hardware, containers virtualize the operating system 
+	(typically Linux) so each individual container contains only the application and its libraries and 
+	dependencies. The absence of the guest OS is why containers are so lightweight and, thus, fast and portable.
+	
+	Containers virtualize at the OS level while VMs virtualize at the hardware level.
+	
+How virtualization works?
+	Virtualization is a process whereby software is used to create an abstraction layer over computer hardware 
+	that allows the hardware elements of a single computer to be divided into multiple virtual computers.
+
+	The software used is called a hypervisor — a small layer that enables multiple operating systems to run 
+	alongside each other, sharing the same physical computing resources. When a hypervisor is used on a 
+	physical computer or server (also known as bare metal server) in a data center, it allows the physical 
+	computer to separate its operating system and applications from its hardware. 
+	Then, it can divide itself into several independent “virtual machines.”
+	
+Benefits of containers
+	The primary advantage of containers, especially as compared to a VM, is that they provide a level of 
+	abstraction that makes them lightweight and portable. Their primary benefits include:
+
+	Lightweight: Containers share the machine OS kernel, eliminating the need for a full OS instance per 
+	application and making container files small and easy on resources. Their smaller size, especially compared 
+	to VMs, means containers can spin up quickly and better support cloud-native applications that scale 
+	horizontally.
+
+	Portable and platform-independent: Containers carry all their dependencies with them, meaning that software 
+	can be written once and then run without needing to be re-configured across laptops, cloud and on-premises 
+	computing environments.
+
+	Supports modern development and architecture: Due to a combination of their deployment portability/consistency 
+	across platforms and their small size, containers are an ideal fit for modern development and application .
+	patterns—such as DevOps, serverless and microservices—that are built using regular code deployments in 
+	small increments.
+
+	Improves utilization: Like VMs before them, containers enable developers and operators to improve CPU and 
+	memory utilization of physical machines. Where containers go even further is that because they also enable 
+	microservices architecture, application components can be deployed and scaled more granularly—an.
+	
+	More consistent operation: DevOps teams know applications in containers will run the same, regardless of 
+	where they are deployed.
+
+Use cases for containers
+	Containers are becoming increasingly prominent, especially in cloud environments. Many organizations are 
+	even considering containers as a replacement of VMs as the general-purpose compute platform for their 
+	applications and workloads. But within that very broad scope, there are key use cases where containers 
+	are especially relevant.
+
+	Microservices: Containers are small and lightweight, which makes them a good match for microservice 
+	architectures where applications are constructed of many, loosely coupled and independently deployable 
+	smaller services.
+		
+	Hybrid, multicloud: Because containers can run consistently anywhere—across laptops, on-premises and cloud 
+	environments—they are an ideal underlying architecture for hybrid cloud and multicloud scenarios in which 
+	organizations find themselves operating across a mix of multiple public clouds in combination with their 
+	own data center.
+	
+	“Lift and shift” existing applications into modern cloud :
+	Some organizations use containers to migrate existing applications into more modern environments. 
+	While this practice delivers some of the basic benefits of operating system virtualization, it does not 
+	offer the full benefits of a modular, container-based application architecture.
+
+	Refactor existing applications for containers:
+	Although refactoring is much more intensive than lift-and-shift migration, it enables the full benefits 
+	of a container environment.
+
+	Develop new container-native applications:
+	Much like refactoring, this approach unlocks the full benefits of containers.
+
+	Provide DevOps support for continuous integration and deployment (CI/CD):
+	Container technology supports streamlined build, test, and deployment from the same container images.
+
+	Provide easier deployment of repetitive jobs and tasks:
+	Containers are being deployed to support one or more similar processes, which often run in the background, 
+	such as ETL functions or batch jobs.

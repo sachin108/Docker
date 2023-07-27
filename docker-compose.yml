@@ -1,0 +1,47 @@
+version: '3'
+services:
+  app:
+    image: node:latest
+    container_name: app_main
+    restart: always
+    command: sh -c "yarn install && yarn start"
+    ports:
+      - 8000:8000
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 
+      MYSQL_DB: test
+  mongo:
+    image: mongo
+    container_name: app_mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/mongo:/data/db
+volumes:
+  mongodb:
+
+# version refers to the docker-compose version (Latest 3)
+# services defines the services that we need to run
+# app is a custom name for one of your containers
+# image the image which we have to pull. Here we are using node:latest and mongo.
+# container_name is the name for each container
+# restart starts/restarts a service container
+# port defines the custom port to run the container
+# working_dir is the current working directory for the service container
+# environment defines the environment variables, such as DB credentials, and so on.
+# command is the command to run the service
+
+#depends_on 
+  app:
+    # ... (rest of the configuration)
+    depends_on:
+      - mongo
+
+  mongo:
+    # ... (rest of the configuration)

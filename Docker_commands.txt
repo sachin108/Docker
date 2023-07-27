@@ -1,0 +1,76 @@
+Finding the version
+    docker --version
+
+Downloading image
+    docker pull image_name
+
+List all the docker images pulled on the system with image details
+    docker images
+
+Run the docker image
+    docker run -it image_name 
+
+Lists all the docker containers are running 
+    docker ps
+
+List all the docker containers running/exited/stopped
+    docker ps -a
+
+Access the docker container and run commands inside the container
+    docker exec -it 09ca6feb6efc bash
+
+Remove the docker container with container id 
+    docker rm container_name_or_id
+
+Remove the docker image with the docker image id
+    docker rmi imageID
+
+Restart the docker container with container id
+    docker restart container_name_or_id
+
+Stop a container with container id
+    docker stop container_name_or_id
+
+This command in docker starts the docker container with container id 
+    docker start container_name_or_id
+
+Stop a container with container id
+    docker kill container_name_or_id
+
+    docker kill is a forceful termination, immediately stopping the 
+    container without giving the application inside it a chance to clean up. 
+    On the other hand, docker stop is a more controlled and graceful way to 
+    stop a container, allowing the application to perform necessary cleanup
+    tasks before shutting down. It is generally recommended to use docker 
+    stop whenever possible, as it helps ensure data integrity and allows 
+    applications to shut down cleanly. However, in some cases, such as when 
+    a container is unresponsive or misbehaving, docker kill may be necessary 
+    to forcefully terminate the container.
+
+Login into docker hub
+    docker login
+
+Upload a docker image on the dockerhub
+    docker push image_name
+
+Amazon Elastic Container Registry (ECR) login 
+    aws ecr get-login-password --region <AWS_REGION> | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
+
+Get detailed information about docker installed on the system including the 
+kernel version, number of containers and images, etc.
+    docker info 
+
+Shows the history of a docker Image
+    docker history image_name
+
+Show the logs of the docker container 
+    docker logs container_name_or_id
+
+Search for a docker image on dockerhub
+    docker search image_name
+
+Create a volume which docker container
+    docker volume create
+
+Logging out from dockerhub
+    docker logout

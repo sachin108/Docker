@@ -1,0 +1,54 @@
+{
+    "schemaVersion": 2,
+    "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+    "manifests": [
+        {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "size": 12345, 
+            "digest": "sha256:abc123...",
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        },
+        {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "size": 9876,
+            "digest": "sha256:def456...",
+            "platform": {
+                "architecture": "arm",
+                "os": "linux"
+            }
+        },
+        {
+            "schemaVersion": 2,
+            "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+            "manifests": [
+                {
+                    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+                    "size": 12345,
+                    "digest": "sha256:abc123...",
+                    "platform": {
+                        "architecture": "amd64",
+                        "os": "linux"
+                    }
+                },
+                {
+                    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+                    "size": 9876,
+                    "digest": "sha256:def456...",
+                    "platform": {
+                        "architecture": "arm",
+                        "os": "linux"
+                    }
+                }, 
+                {
+                    "comment":"Other platform-specific image versions...", 
+                    "The size field represents the size of the image manifest in bytes." :"just a comment", 
+                    "The digest is a unique identifier (a cryptographic hash) for the content of the image manifest. It ensures the integrity of the image version": "nothing"
+                }
+            ]
+        }
+        
+    ]
+}
