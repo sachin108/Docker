@@ -1,0 +1,135 @@
+Docker includes a networking system for managing communications between 
+containers, your Docker host, and the outside world. 
+Several different network types are supported, facilitating a variety of 
+common use cases.
+
+Docker networks configure communications between neighboring containers 
+and external services. Containers must be connected to a Docker network to
+receive any network connectivity. 
+
+Docker comes with five built-in network drivers that implement core 
+networking functionality:
+    bridge
+    host
+    overlay
+    IPvLAN
+    macvlan
+
+1. bridge
+    Bridge networks create a software-based bridge between your host and the 
+    container. Containers connected to the network can communicate with each 
+    other, but they’re isolated from those outside the network.
+
+    Each container in the network is assigned its own IP address. 
+    Because the network’s bridged to your host, containers are also able to 
+    communicate on your LAN and the internet. They will not appear as 
+    physical devices on your LAN, however.
+
+2. host
+    Containers that use the host network mode share your host’s network 
+    stack without any isolation. They aren’t allocated their own IP 
+    addresses, and port binds will be published directly to your host’s 
+    network interface. This means a container process that listens on 
+    port 80 will bind to <your_host_ip>:80.
+
+3. overlay
+    Overlay networks are distributed networks that span multiple Docker 
+    hosts. The network allows all the containers running on any of the 
+    hosts to communicate with each other without requiring OS-level 
+    routing support.
+
+    Overlay networks implement the networking for Docker Swarm clusters, 
+    but you can also use them when you’re running two separate instances 
+    of Docker Engine with containers that must directly contact each other. 
+    This allows you to build your own Swarm-like environments.
+
+4. ipvlan
+    IPvLAN is an advanced driver that offers precise control over the IPv4 
+    and IPv6 addresses assigned to your containers, as well as layer 2 and 
+    3 VLAN tagging and routing.
+
+    This driver is useful when you’re integrating containerized services 
+    with an existing physical network. IPvLAN networks are assigned their 
+    own interfaces, which offers performance benefits over bridge-based 
+    networking.
+
+5. macvlan
+    macvlan is another advanced option that allows containers to appear as 
+    physical devices on your network. It works by assigning each container 
+    in the network a unique MAC address.
+
+    This network type requires you to dedicate one of your host’s physical 
+    interfaces to the virtual network. The wider network must also be 
+    appropriately configured to support the potentially large number of MAC 
+    addresses that could be created by an active Docker host running many 
+    containers.
+
+Which Network Type Should I Use?
+    Bridge networks are the most suitable option for the majority of 
+    scenarios you’ll encounter. Containers in the network can communicate 
+    with each other using their own IP addresses and DNS names. 
+    They also have access to your host’s network, so they can reach the 
+    internet and your LAN.
+
+    Host networks are best when you want to bind ports directly to your 
+    host’s interfaces and aren’t concerned about network isolation. 
+    They allow containerized apps to function similarly to network 
+    services running directly on your host.
+
+    Overlay networks are required when containers on different Docker 
+    hosts need to communicate directly with each other. These networks 
+    let you set up your own distributed environments for high availability.
+
+    Macvlan networks are useful in situations where containers must appear 
+    as a physical device on your host’s network, such as when they run an 
+    application that monitors network traffic. IPvLAN networks are an 
+    advanced option for when you have specific requirements around 
+    container IP addresses, tags, and routing.
+
+    Docker also supports third-party network plugins, which expand the 
+    networking system with additional operating modes. 
+
+    Finally, Docker networking is always optional at the container level: 
+    setting a container’s network to none will completely disable its 
+    networking stack. The container will be unable to reach its neighbors, 
+    your host’s services, or the internet. This helps improve security by 
+    sandboxing applications that aren’t expected to require connectivity.
+
+How Docker Networking Works
+    Docker uses your host’s network stack to implement its networking system. 
+    It works by manipulating iptables rules to route traffic to your 
+    containers. This also provides isolation between Docker networks and 
+    your host.
+
+    iptables is the standard Linux packet filtering tool. Rules added to 
+    iptables define how traffic is routed as it passes through your host’s 
+    network stack. Docker networks add filtering rules which direct 
+    matching traffic to your container’s application. The rules are 
+    automatically configured, so you don’t need to manually interact with 
+    iptables.
+
+    Docker containers are assigned their own network namespace, a Linux 
+    kernel feature that provides isolated virtual network environments. 
+    Containers also create virtual network interfaces on your host that 
+    allow them to communicate outside their namespace using your host’s 
+    network.
+
+    The details of how Docker networking is implemented are relatively complex 
+    and low-level. Docker abstracts them away from end users, providing a 
+    seamless container networking experience that’s predictable and effective. 
+
+Docker Networking vs. VM Networking
+    Whereas Docker achieves network isolation using namespaces and iptables 
+    rules, VMs typically run a separate networking stack for each virtual 
+    machine. There are also differences in terminology that can cause 
+    confusion: what Docker calls a “bridge” network is similar to a 
+    NAT-based network in most VM solutions.
+
+    Generally, VMs can support a broader range of network topologies than 
+    Docker natively permits. However, Docker includes all the tools to 
+    create the network solution you require, whether by using macvlan to 
+    assign containers addresses on your physical network or by using a 
+    third-party plugin to implement missing network models.
+
+
+https://www.simplilearn.com/tutorials/docker-tutorial/docker-networking

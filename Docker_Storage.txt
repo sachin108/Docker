@@ -1,0 +1,46 @@
+Containers don’t write data permanently to any storage location. Docker 
+storage must be configured if you would like your container to store data 
+permanently. The data doesn’t prevail when the container is deleted 
+(using the remove command); this happens because when the container is 
+deleted, the writable layer is also deleted. If the data is stored outside 
+the container you can use it even if the container no longer exists.
+
+If a container crashes and can’t be restored/restarted the data is gone! 
+But, normally containers can be restarted and continued – in that case, the 
+data is not lost. So, it’s always advisable moreover mandatory to mount the 
+data outside the container.
+
+Whenever you execute a docker run the command you start a new container with 
+fresh data. The data is based on the image you provide and that data is 
+consistent unless you rebuild the image.
+
+Containers can't hold the data, because the containers are designed to be 
+small, run quickly, with all backend storage outside the container. 
+When defined without Docker storage, containers store their data in 
+so-called layers for which they need a storage driver. 
+However, it’s possible to preserve the condition of the container in 3 ways. 
+The primary 2 ways use the host’s storage space: Volumes and Bind Mounts. 
+The third way writes directly on to the host memory (tmpfs) and may be used 
+for security reasons.
+
+Docker storage distinguishes three storage types. Two types are permanent: 
+Docker volumes and bind Mounts and the third way of writing data is tmpfs. 
+From the container perspective, it doesn’t know what sort of storage is in 
+use.
+
+The difference between these is, volumes have a dedicated filesystem on the 
+host (/var/lib/ docker/volumes) and are directly controlled through the 
+Docker CLI. On the other hand, bind mounts use any available host filesystem. 
+Whereas tmpfs, uses the host memory.
+
+Volumes and bind mounts allow data to be stored on the host machine and 
+accessed by the container. They provide persistent storage and can survive 
+container restarts and removals. Tmpfs mounts, on the other hand, store 
+data in memory and are useful for storing temporary or cache data. They are 
+non-persistent and are typically removed when the container is stopped or 
+removed.
+
+Aside from these three options, Docker itself does not have built-in support 
+for other storage mechanisms for container data. However, there are external 
+solutions and plugins that may provide alternative ways to store container 
+data. eg: Rex_Ray and Flocker

@@ -1,0 +1,18 @@
+Installation and setup
+    Because of the complexity of Kubernetes, Docker Swarm is easier to install and configure.
+
+Scalability
+    Kubernetes offers all-in-one scaling based on traffic, while Docker Swarm emphasizes scaling quickly.
+
+    Kubernetes: Horizontal autoscaling is built in.
+    Swarm: Offers autoscaling of groups on demand.
+
+Load balancing
+    Docker Swarm has automatic load balancing, while Kubernetes does not. However, an external load balancer can easily be integrated via third-party tools in Kubernetes.
+
+High availability
+    Both tools provide a high level of availability.
+
+    Kubernetes: By diverting traffic away from unhealthy pods, Kubernetes is self-healing. It offers intelligent scheduling and high availability of services through replication.
+    
+    Swarm: Swarm Managers offer availability controls, and microservices can be easily duplicated.

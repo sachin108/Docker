@@ -1,0 +1,26 @@
+What is Docker Engine?
+    Docker Engine is the underlying client-server technology that supports 
+    the tasks and workflows involved in building, shipping and running 
+    containerized applications using Docker's components and services.
+
+    Used alone, the term Docker can refer either to Docker Engine or to the 
+    company Docker Inc., which offers various editions of containerization 
+    technology around Docker Engine.
+
+Components of Docker Engine
+    Docker Engine is an open source technology comprising a server with a 
+    daemon process called dockerd, a REST API and a client-side command-line 
+    interface (CLI) called docker. 
+    The engine creates a server-side daemon process that hosts images, 
+    containers, networks and storage volumes. The CLI lets users interact 
+    with the Docker daemon via the API.
+
+Docker Engine and swarm mode
+    A swarm is a cluster of connected Docker Engines onto which admins 
+    can deploy application services. In version 1.12, Docker incorporated 
+    Docker Swarm directly into Docker Engine and renamed the orchestration 
+    service swarm mode. Swarm mode is Docker Engine's native clustering 
+    and orchestration service, although Docker Engine can run other 
+    options, such as Kubernetes.
+
+

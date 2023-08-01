@@ -1,0 +1,26 @@
+In enterprise applications, the number of containers can quickly grow to an 
+unmanageable number. To use your containers most effectively, you’ll need to 
+orchestrate your containerized applications, which is where Kubernetes and 
+Docker Swarm come in.
+
+Docker Swarm is open-source container orchestration platform that has been 
+around for a while. Swarm — or more accurately, swarm mode — is Docker’s 
+native support for orchestrating clusters of Docker engines. 
+A Swarm cluster consists of Docker Engine-deployed Swarm manager nodes 
+(which orchestrate and manage the cluster) and worker nodes (which are 
+directed to execute tasks by the manager nodes).
+
+It smoothly integrates with Docker tools like Docker Compose and Docker 
+CLI since it uses the same command line interface (CLI) as Docker Engine.
+    
+It uses a filtering and scheduling system to provide intelligent node 
+selection, allowing you to pick the optimal nodes in a cluster for container 
+deployment.
+
+In swarm mode, Docker hosts are called nodes. Each swarm-controlled cluster 
+includes one or more swarm manager nodes and worker nodes on which the 
+swarm component acts as an agent.
+
+Swarms usually include multiple swarm managers to enhance availability. 
+Manager tasks include cluster functions such as placement, scaling, and 
+recovery actions for the workloads.
